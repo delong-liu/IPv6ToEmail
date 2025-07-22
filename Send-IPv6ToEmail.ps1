@@ -8,9 +8,9 @@ $ToEmail = $env:SMTP_USER
 
 
 # 获取当前公网 IPv6 地址（非 fe80::）
+# 根据情况修改这里
 function Get-PublicIPv6 {
-    $IPv6 = (Get-NetIPAddress -AddressFamily IPv6 | 
-        Where-Object { $_.PrefixOrigin -eq 'Dhcp' -and $_.IPAddress -notlike 'fe80::*' }).IPAddress
+    $IPv6 = (Get-NetIPAddress -AddressFamily IPv6 | Where-Object { $_.SuffixOrigin -eq "Random" -and $_.IPAddress -notlike 'fe80::*' }).IPAddress
     return $IPv6
 }
 
